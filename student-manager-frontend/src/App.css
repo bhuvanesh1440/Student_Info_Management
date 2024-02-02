@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.nav h1 {
+  font-weight: 100;
+  color: whitesmoke;
+}
+
+.link {
+  padding: 0.5rem 1rem;
+  color: whitesmoke;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.link:hover {
+  border-bottom: 1px solid whitesmoke;
+}

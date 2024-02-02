@@ -1,0 +1,94 @@
+.thisPage {
+  display: flex;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 1rem;
+  width: 20vw;
+  border-right: 1px solid whitesmoke;
+  height: 87vh;
+}
+
+.sideItems {
+  padding: 0.5rem;
+  color: whitesmoke;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.sideItems:hover {
+  border-bottom: 1px solid whitesmoke;
+}
+
+/* .marks{
+  margin: 50px;
+  margin-left: 10rem;
+}
+.marks h1,p{
+
+  color: aliceblue;
+}
+
+#marksTable{
+  border: 2px solid aliceblue;
+} */
+
+.thisPage {
+  display: flex;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 1rem;
+  width: 20vw;
+  border-right: 1px solid whitesmoke;
+  height: 87vh;
+}
+
+.sideItems {
+  padding: 0.5rem;
+  color: whitesmoke;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.sideItems:hover {
+  border-bottom: 1px solid whitesmoke;
+}
+
+.details {
+  padding-left: 2vw;
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: 75vw;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.heading {
+  color: whitesmoke;
+}
+
+.btn {
+  margin-bottom: 5px;
+}
+p {
+  color: aliceblue;
+  font-size: large;
+}
+
+.label {
+  color: whitesmoke;
+}
+
+#table {
+  width: 40vw;
+}
