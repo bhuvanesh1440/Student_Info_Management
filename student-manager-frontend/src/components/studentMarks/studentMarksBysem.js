@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './studentMarks.css'
+import Certificate from "../certificate/certificate";
+import { useNavigate } from "react-router-dom";
+
 
 function StudentMarksBySem() {
+  const navigate = useNavigate();
   const [rollNumber, setRollNumber] = useState("");
   const [branch, setBranch] = useState("CSE");
   const [semester, setSemester] = useState("Semester 1");
   const [subjects, setSubjects] = useState([]);
   const [tableData, setTableData] = useState([]);
+  const [studentDetails, setStudentDetails] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [displayCertificate, setDisplayCertificate] = useState(false); // State for displaying the certificate
+ 
+  // ... Existing code ...
+
 
   const handleRollNumberChange = (e) => {
     setRollNumber(e.target.value);
@@ -22,6 +31,22 @@ function StudentMarksBySem() {
     setSemester(e.target.value);
   };
 
+  const handleGetCertificate = () => {
+    // Navigate to the "/certificate" route using navigate function
+    console.log(semester);
+    navigate("/certificate", {
+      state: {
+        studentDetails: studentDetails,
+        tableData: tableData,
+        subjects: subjects, 
+        semester:semester
+      },
+    }
+    );
+  };
+  
+
+  
   const mapSemesterToBackendFormat = (frontendSemester) => {
     // Map frontend semester to backend format
     const semesterMap = {
@@ -50,6 +75,14 @@ function StudentMarksBySem() {
       const response = await axios.get(
         `http://localhost:5000/marks/${rollNumber}/${backendSemester}`
       );
+      
+      // Fetch student details
+      const studentDetailsResponse = await axios.get(
+        `http://localhost:5000/student/${rollNumber}`
+      );
+
+      // Set student details
+      setStudentDetails(studentDetailsResponse.data);
 
       // Fetch subjects based on the selected branch and semester
       const subjectsData = {
@@ -74,7 +107,7 @@ function StudentMarksBySem() {
 
       // Set subjects based on the selected branch and semester
       setSubjects(subjectsData[branch][semester] || []);
-
+      
       // Set the fetched marks data to the table
       setTableData(response.data.marks);
     } catch (error) {
@@ -82,6 +115,7 @@ function StudentMarksBySem() {
       setErrorMessage(error.response.data.message);
     }
   };
+
 
   return (
     <>
@@ -143,6 +177,26 @@ function StudentMarksBySem() {
             </button>
           </div>
         </form>
+
+        {studentDetails && (
+  <div>
+    <h2 className="heading">Student Details:</h2>
+    <table className="table table-success table-striped">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <td>{studentDetails.studentName}</td>
+        </tr>
+        <tr>
+          <th>Roll Number</th>
+          <td>{studentDetails.rollNumber}</td>
+        </tr>
+        {/* Add more details as needed */}
+      </tbody>
+    </table>
+  </div>
+)}
+
         
         <table className="table table-success table-striped">
           <thead>
@@ -160,8 +214,20 @@ function StudentMarksBySem() {
                 <td>{tableData[index]}</td> {/* Display marks data here */}
               </tr>
             ))}
+            
           </tbody>
         </table>
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={handleGetCertificate}
+          disabled={!studentDetails}
+          
+        >
+          Get Certificate
+        </button>
+
+        
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </>

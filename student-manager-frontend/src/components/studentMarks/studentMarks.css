@@ -85,3 +85,8 @@ p{
   color: aliceblue;
   font-size: large;
 }
+
+.student-details{
+  display: flex;
+  direction: row;
+}

@@ -7,6 +7,7 @@ import About from "./components/about/about";
 import Contact from "./components/contact/contact";
 import StudentDetails from "./components/studentDetails/studentDetails";
 import StudentMarks from "./components/studentMarks/studentMarks";
+import Certificate from "./components/certificate/certificate";
 import "./App.css";
 import { useAuth } from "./AuthContext";
 
@@ -46,6 +47,7 @@ function App() {
           )}
         </nav>
       </div>
+      
       <Routes>
         <Route exact path="/" element={<Main />} />
         <Route exact path="/login" element={<Login />} />
@@ -54,6 +56,7 @@ function App() {
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/details" element={<StudentDetails />} />
         <Route exact path="/marks" element={<StudentMarks />} />
+        <Route exact path="/certificate" element={<Certificate/>}/>
       </Routes>
     </>
   );

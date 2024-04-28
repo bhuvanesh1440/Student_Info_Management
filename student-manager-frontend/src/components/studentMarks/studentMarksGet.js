@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
 function StudentMarksGet() {
   const [rollNumber, setRollNumber] = useState("");
   const [marksData, setMarksData] = useState(null);
@@ -58,8 +59,12 @@ function StudentMarksGet() {
                 )}
               </tr>
             ))}
+           
+          
           </tbody>
         </table>
+
+        
       </div>
     );
   };
